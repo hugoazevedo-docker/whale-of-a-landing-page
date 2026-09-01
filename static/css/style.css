@@ -1,0 +1,246 @@
+:root {
+    --docker-blue: #0db7ed;
+    --docker-blue-dark: #066da5;
+    --sky-top: #4fc3f7;
+    --sky-bottom: #b3e5fc;
+    --whale-body: #1f8fd6;
+    --whale-belly: #e6f7ff;
+    --whale-fin: #0d6fa8;
+    --sand: #ffffff;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background: linear-gradient(180deg, var(--sky-top) 0%, var(--sky-bottom) 60%, #81d4fa 100%);
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+/* --- Clouds --- */
+.sky {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.cloud {
+    position: absolute;
+    background: #ffffff;
+    border-radius: 50px;
+    opacity: 0.85;
+    filter: blur(0.5px);
+}
+
+.cloud::before,
+.cloud::after {
+    content: "";
+    position: absolute;
+    background: #ffffff;
+    border-radius: 50%;
+}
+
+.cloud-1 {
+    width: 100px;
+    height: 36px;
+    top: 8%;
+    left: 10%;
+    animation: drift 40s linear infinite;
+}
+.cloud-1::before { width: 50px; height: 50px; top: -22px; left: 10px; }
+.cloud-1::after { width: 40px; height: 40px; top: -16px; left: 50px; }
+
+.cloud-2 {
+    width: 140px;
+    height: 44px;
+    top: 16%;
+    left: 60%;
+    animation: drift 55s linear infinite;
+    animation-delay: -10s;
+}
+.cloud-2::before { width: 60px; height: 60px; top: -28px; left: 15px; }
+.cloud-2::after { width: 50px; height: 50px; top: -20px; left: 70px; }
+
+.cloud-3 {
+    width: 80px;
+    height: 28px;
+    top: 5%;
+    left: 40%;
+    animation: drift 30s linear infinite;
+    animation-delay: -5s;
+}
+.cloud-3::before { width: 36px; height: 36px; top: -16px; left: 8px; }
+.cloud-3::after { width: 30px; height: 30px; top: -12px; left: 38px; }
+
+@keyframes drift {
+    from { transform: translateX(-20vw); }
+    to { transform: translateX(120vw); }
+}
+
+/* --- Hero --- */
+.hero {
+    position: relative;
+    z-index: 1;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 2rem 1rem 0;
+}
+
+.title {
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    margin: 0;
+    color: #ffffff;
+    text-shadow: 0 3px 0 var(--docker-blue-dark), 0 6px 12px rgba(0, 0, 0, 0.15);
+    letter-spacing: 1px;
+}
+
+.subtitle {
+    margin: 0.5rem 0 1.5rem;
+    color: #06496f;
+    font-size: clamp(1rem, 2vw, 1.25rem);
+    font-weight: 500;
+}
+
+/* --- Whale scene --- */
+.whale-scene {
+    position: relative;
+    width: min(500px, 90vw);
+    margin: 0 auto;
+}
+
+.whale {
+    width: 100%;
+    height: auto;
+    animation: bob 4s ease-in-out infinite;
+    transform-origin: 50% 80%;
+    position: relative;
+    z-index: 2;
+}
+
+@keyframes bob {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-10px) rotate(-1.5deg); }
+}
+
+.whale-body { fill: var(--whale-body); }
+.whale-belly { fill: var(--whale-belly); }
+.whale-fin {
+    fill: var(--whale-fin);
+    transform-origin: 148px 150px;
+    animation: wave-fin 2.6s ease-in-out infinite;
+}
+
+@keyframes wave-fin {
+    0%, 100% { transform: rotate(0deg); }
+    50% { transform: rotate(14deg); }
+}
+
+.whale-eye-white { fill: #ffffff; }
+.whale-eye {
+    fill: #063a52;
+    animation: blink 5s ease-in-out infinite;
+    transform-origin: 302px 106px;
+}
+
+@keyframes blink {
+    0%, 92%, 100% { transform: scaleY(1); }
+    95% { transform: scaleY(0.1); }
+}
+
+.whale-smile {
+    fill: none;
+    stroke: #063a52;
+    stroke-width: 3;
+    stroke-linecap: round;
+}
+
+.spout {
+    fill: #eaf9ff;
+    opacity: 0.9;
+    animation: spout-pulse 3s ease-in-out infinite;
+    transform-origin: 165px 40px;
+}
+
+@keyframes spout-pulse {
+    0%, 100% { transform: translateY(0) scale(1); opacity: 0.9; }
+    50% { transform: translateY(-6px) scale(1.08); opacity: 1; }
+}
+
+.container {
+    stroke: rgba(0, 0, 0, 0.15);
+    stroke-width: 1;
+}
+.c-blue { fill: #0db7ed; }
+.c-yellow { fill: #ffcc33; }
+.c-green { fill: #4caf50; }
+
+/* --- Waves --- */
+.waves {
+    position: relative;
+    margin-top: -55px;
+    z-index: 1;
+}
+
+.wave {
+    display: block;
+    width: 100%;
+    height: 40px;
+}
+
+.wave-back path { fill: #55c8f0; opacity: 0.7; }
+.wave-front path { fill: #29b6f6; }
+
+.wave-back {
+    animation: wave-move 6s linear infinite;
+}
+.wave-front {
+    animation: wave-move 4s linear infinite reverse;
+}
+
+@keyframes wave-move {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50px); }
+}
+
+/* --- CTA --- */
+.cta {
+    display: inline-block;
+    margin: 2rem 0;
+    padding: 0.85rem 2rem;
+    background: #ffffff;
+    color: var(--docker-blue-dark);
+    font-weight: 700;
+    font-size: 1.1rem;
+    text-decoration: none;
+    border-radius: 999px;
+    box-shadow: 0 6px 16px rgba(6, 73, 111, 0.25);
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.cta:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(6, 73, 111, 0.3);
+}
+
+/* --- Footer --- */
+.footer {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    padding: 1rem;
+    color: #06496f;
+    font-size: 0.9rem;
+}
