@@ -2,13 +2,12 @@
 
 # ---- build stage -----------------------------------------------------------
 # The -dev variant has apt/bash and runs as root, so it can install packages.
-FROM dhi.io/python:3.12-debian13-dev AS build
+FROM python:3.12-slim AS build
 
 WORKDIR /app
 
 COPY requirements.txt .
-RUN python3 -m pip install --no-cache-dir --no-compile \
-    --target=/usr/lib/python3.12/site-packages -r requirements.txt
+RUN python3 -m pip install --no-cache-dir --prefix=/install -r requirements.txt
 
 COPY app.py .
 COPY templates/ templates/
@@ -21,8 +20,10 @@ FROM dhi.io/python:3.12-debian13 AS runtime
 
 WORKDIR /app
 
-COPY --from=build /usr/lib/python3.12/site-packages /usr/lib/python3.12/site-packages
-COPY --from=build /app /app
+COPY --from=build /install /usr/local
+COPY --from=build --chown=65532:65532 /app /app
+
+ENV PYTHONPATH=/usr/local/lib/python3.12/site-packages
 
 EXPOSE 8000
 
