@@ -1,11 +1,10 @@
 :root {
-    --docker-blue: #0db7ed;
-    --docker-blue-dark: #066da5;
+    --docker-blue: #1D63ED;
+    --docker-blue-dark: #0B3F9E;
     --sky-top: #4fc3f7;
     --sky-bottom: #b3e5fc;
-    --whale-body: #1f8fd6;
-    --whale-belly: #e6f7ff;
-    --whale-fin: #0d6fa8;
+    --whale-body: #1D63ED;
+    --whale-fin: #124FC0;
     --sand: #ffffff;
 }
 
@@ -136,10 +135,9 @@ body {
 }
 
 .whale-body { fill: var(--whale-body); }
-.whale-belly { fill: var(--whale-belly); }
 .whale-fin {
     fill: var(--whale-fin);
-    transform-origin: 148px 150px;
+    transform-origin: 130px 150px;
     animation: wave-fin 2.6s ease-in-out infinite;
 }
 
@@ -150,9 +148,9 @@ body {
 
 .whale-eye-white { fill: #ffffff; }
 .whale-eye {
-    fill: #063a52;
+    fill: #08245c;
     animation: blink 5s ease-in-out infinite;
-    transform-origin: 302px 106px;
+    transform-origin: 70px 119px;
 }
 
 @keyframes blink {
@@ -162,7 +160,7 @@ body {
 
 .whale-smile {
     fill: none;
-    stroke: #063a52;
+    stroke: #08245c;
     stroke-width: 3;
     stroke-linecap: round;
 }
@@ -171,7 +169,7 @@ body {
     fill: #eaf9ff;
     opacity: 0.9;
     animation: spout-pulse 3s ease-in-out infinite;
-    transform-origin: 165px 40px;
+    transform-origin: 92px 60px;
 }
 
 @keyframes spout-pulse {
@@ -180,12 +178,15 @@ body {
 }
 
 .container {
-    stroke: rgba(0, 0, 0, 0.15);
+    stroke: rgba(255, 255, 255, 0.35);
     stroke-width: 1;
 }
-.c-blue { fill: #0db7ed; }
-.c-yellow { fill: #ffcc33; }
-.c-green { fill: #4caf50; }
+.c-1 { fill: #9EC5FF; }
+.c-2 { fill: #6BA5FF; }
+.c-3 { fill: #0B3F9E; }
+.c-4 { fill: #6BA5FF; }
+.c-5 { fill: #9EC5FF; }
+.c-6 { fill: #0B3F9E; }
 
 /* --- Waves --- */
 .waves {
